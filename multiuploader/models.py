@@ -7,10 +7,10 @@ try:
 except AttributeError:
     storage = 'multiuploader_images/'
 
-class MultiuploaderImage(models.Model):
+class MultiuploaderFile(models.Model):
     """Model for storing uploaded photos"""
     filename = models.CharField(max_length=60, blank=True, null=True)
-    image = models.FileField(upload_to=storage)
+    file = models.FileField(upload_to=storage)
     key_data = models.CharField(max_length=90, unique=True, blank=True, null=True)
     upload_date = models.DateTimeField(auto_now_add=True)
 
@@ -20,7 +20,7 @@ class MultiuploaderImage(models.Model):
         while 1:
             key = str(random.getrandbits(256))
             try:
-                MultiuploaderImage.objects.get(key=key)
+                MultiuploaderFile.objects.get(key=key)
             except:
                 return key
 
