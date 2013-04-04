@@ -12,7 +12,7 @@ except AttributeError:
     image_url = 'multi_image'
 
 urlpatterns = patterns('',
-    (r'^'+delete_url+'/(\d+)/$', 'multiuploader.views.multiuploader_delete'),
+    url(r'^'+delete_url+'/(\d+)/$', 'multiuploader.views.multiuploader_delete'),
     url(r'^multi/$', 'multiuploader.views.multiuploader', name='multi'),
-    (r'^'+image_url+'/(\d+)/$', 'multiuploader.views.multi_show_uploaded'),
+    url(r'^'+image_url+'/(\d+)/$', 'multiuploader.views.multi_show_uploaded'),
 )

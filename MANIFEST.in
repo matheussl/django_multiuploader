@@ -1,0 +1,7 @@
+nclude README
+include CHANGELOG
+include MANIFEST.in
+
+recursive-include multiuploader/templates
+recursive-include multiuploader/templatetags
+recursive-include multiuploader/static

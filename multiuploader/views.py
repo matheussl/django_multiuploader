@@ -1,7 +1,7 @@
 from django.shortcuts import get_object_or_404, render_to_response
 from django.conf import settings
 from django.http import HttpResponse, HttpResponseBadRequest
-from models import MultiuploaderImage
+from models import File
 from django.core.files.uploadedfile import UploadedFile
 
 #importing json parser to generate jQuery plugin friendly json response
@@ -26,7 +26,7 @@ def multiuploader_delete(request, pk):
     """
     if request.method == 'POST':
         log.info('Called delete image. image id='+str(pk))
-        image = get_object_or_404(MultiuploaderImage, pk=pk)
+        image = get_object_or_404(File, pk=pk)
         image.delete()
         log.info('DONE. Deleted photo id='+str(pk))
         return HttpResponse(str(pk))
@@ -54,7 +54,7 @@ def multiuploader(request):
 
         #writing file manually into model
         #because we don't need form of any type.
-        image = MultiuploaderImage()
+        image = File()
         image.filename=str(filename)
         image.image=file
         image.key_data = image.key_generate
@@ -99,6 +99,6 @@ def multiuploader(request):
 def multi_show_uploaded(request, key):
     """Simple file view helper.
     Used to show uploaded file directly"""
-    image = get_object_or_404(MultiuploaderImage, key_data=key)
+    image = get_object_or_404(File, key_data=key)
     url = settings.MEDIA_URL+image.image.name
     return render_to_response('multiuploader/one_image.html', {"multi_single_url":url,})
