@@ -1,5 +1,9 @@
 Changelog for Django-multiuploader
 
+Django-multiuploader 2.0 01.01.2013
+==============================================================
+- add support to any file type
+
 Django-multiuploader 1.2.0 27.07.2011
 ==============================================================
 - add {% verbatim %} templatetag thanks to "dadon" issue #1
