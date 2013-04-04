@@ -17,7 +17,7 @@ def read(fname):
     return open(os.path.join(os.path.dirname(__file__), fname)).read()
 
 setup(
-    name = "django-multiuploader-file",
+    name = "django_multiuploader_file",
     version = "2.0",
     author = "Matheus Lima",
     author_email = "matheus.se@gmail.com",
