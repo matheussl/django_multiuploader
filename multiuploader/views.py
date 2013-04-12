@@ -51,12 +51,12 @@ def multiuploader(request):
         wrapped_file = UploadedFile(file)
         filename = wrapped_file.name
         file_size = wrapped_file.file.size
-        log.info ('Got file: "%s"' % str(filename))
+        log.info ('Got file: "%s"' % filename)
 
         #writing file manually into model
         #because we don't need form of any type.
         image = File()
-        image.filename=str(filename)
+        image.filename= filename
         image.image=file
         image.key_data = image.key_generate
         image.save()
@@ -65,16 +65,19 @@ def multiuploader(request):
         #settings imports
         try:
             file_delete_url = settings.MULTI_FILE_DELETE_URL+'/'
-            file_url = settings.MULTI_IMAGE_URL+'/'+image.key_data+'/'
+            # file_url = settings.MULTI_IMAGE_URL+'/'+image.key_data+'/'
         except AttributeError:
             file_delete_url = 'multi_delete/'
-            file_url = 'multi_image/'+image.key_data+'/'
+            # file_url = 'multi_image/'+image.key_data+'/'
+
+        file_url = image.image.url;
 
         #generating json response array
         result = []
         context = {"name":filename, 
             "size":file_size, 
-            "url":file_url, 
+            "url":file_url,
+            "file_id": image.id,
             "delete_url":file_delete_url+str(image.pk)+'/', 
             "delete_type":"POST",
         }

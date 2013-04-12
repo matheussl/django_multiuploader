@@ -16,7 +16,10 @@ $(function () {
     'use strict';
 
     // Initialize the jQuery File Upload widget:
-    $('#fileupload').fileupload();
+    $('#fileupload').fileupload({
+        autoUpload: true,
+        singleFileUploads: true
+    });
 
     // Load existing files:
     $.getJSON($('#fileupload form').prop('action'), function (files) {
