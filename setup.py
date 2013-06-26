@@ -18,7 +18,7 @@ def read(fname):
 
 setup(
     name = "django_multiuploader_file",
-    version = "2.0.1",
+    version = "2.0.2",
     author = "Matheus Lima",
     author_email = "matheus.se@gmail.com",
     description = ("A fork of django-multiuploader that allow upload any file type."),
