@@ -26,15 +26,26 @@ class File(models.Model):
 
     @property
     def extension(self):
-        print self.image.name
         splited_filename = self.image.name.split('.')
         if splited_filename:
-            print splited_filename[-1]
             return splited_filename[-1]
         return ''
+
     @property
     def is_image(self):
         return self.extension.lower() in ['jpg', 'jpeg', 'png', 'gif']
+
+    @property
+    def is_epub(self):
+        return self.extension == '.epub'
+    
+    @property
+    def thumbnail_src(self):
+        if self.is_image:
+            src = self.image.url
+        else:
+            src = getattr(settings, "FILE_IMAGE_URL", '')
+        return src
 
     def __unicode__(self):
         return self.image.name
